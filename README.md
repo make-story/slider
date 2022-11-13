@@ -1,6 +1,7 @@
 # 환경 셋업
 
 - Node.js 웹서버
+  - v14.15.1 이상
 - Express 웹프레임워크
 - EJS 템플릿엔진
 - webpack, babel 빌드
