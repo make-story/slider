@@ -1,0 +1,33 @@
+{
+  "name": "slider.git",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/make-story/slider.git",
+  "author": "Sung-min Yu <yu9221@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "webpack serve",
+    "build": "webpack"
+  },
+  "dependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/plugin-proposal-optional-chaining": "^7.18.9",
+    "@babel/preset-env": "^7.8.7",
+    "axios": "^1.1.3",
+    "babel-loader": "^9.1.0",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "css-loader": "^3.4.2",
+    "ejs": "^3.0.1",
+    "ejs-compiled-loader": "^3.1.0",
+    "express": "^4.18.2",
+    "html-webpack-plugin": "^5.5.0",
+    "image-thumbnail": "^1.0.15",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
+  }
+}

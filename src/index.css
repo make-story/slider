@@ -1,0 +1,57 @@
+/* import */
+@import 'reset.css';
+
+.slide {
+  position: relative;
+  border: 1px dotted #000;
+}
+.slide_wrap {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  /* slide drag 를 위해 dom 요소가 드래그로 선택되는것을 방지 */
+  user-select: none;
+}
+.slide_item {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  /* height 는 width 상대적 */
+  width: 100%;
+
+  /* position - 버튼 클릭시 left offset값을 적용시키기 위해 */
+  position: relative;
+  left: 0px;
+
+  /* style left 값 변경시 애니메이션 */
+  transition: left 0.15s;
+}
+.slide_item img {
+  user-select: none;
+  /* 이미지 기본 이벤트 해제 */
+  pointer-events: none;
+}
+.slide_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+
+  /* 버튼이 중앙에 위치하게 하기위해 계산 */
+  top: calc(50% - 16px);
+  width: 60px;
+  height: 32px;
+
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+.slide_prev_button {
+  left: 10px;
+}
+.slide_next_button {
+  right: 10px;
+}
