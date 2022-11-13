@@ -35,7 +35,7 @@ eventOn(ACTION_TYPE.SET_LOADING, ({ detail }) => {
  * 이미지 데이터 업데이트되었을 때
  */
 export const setRenderSlideList = ($slideWrap = null, data = []) => {
-    $slideWrap.innerHTML = ''; 
+    $slideWrap.innerHTML = ''; // 초기화
     const $fragment = document.createDocumentFragment(); // 임시 Node DOM 공간 활용
     data.forEach((value, index, list) => {
         const $div = document.createElement('div');
@@ -67,16 +67,22 @@ export const setRenderSlideMove = ($slide = null, data = 0) => {
 };
 export const setRenderOriginalImage = ($originalImage, data = null) => {
     const images = state(ACTION_TYPE.GET_DATA_IMAGES);
-    $originalImage.innerHTML = '';
+    const setHTML = (html = '') => {
+        $originalImage.innerHTML = html;
+    };
+    setHTML(); // 초기화
     if(!isNaN(Number(data)) && Array.isArray(images) && images[data]) {
         const $img = document.createElement('img');
         $img.onload = () => {
             $img.setAttribute('data-load', 'true');
         };
+        $img.onerror = () => {
+            setHTML('이미지 오류가 발생했습니다.');
+        };
         $img.src = `//localhost:5000${images[data]}`;
         $originalImage.appendChild($img);
     }else {
-        $originalImage.innerHTML = '오류가 발생했습니다.'
+        setHTML('데이터 오류가 발생했습니다.');
     }
 };
 eventOn(ACTION_TYPE.SET_DATA_INDEX, ({ detail }) => {
