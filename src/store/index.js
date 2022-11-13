@@ -1,7 +1,7 @@
 /**
  * 상태관리 모듈
  */
-import { eventDispatch } from '@src/module/event';
+import { eventDispatch } from '@src/util/event';
 
 /**
  * 전역 스토어(상태)

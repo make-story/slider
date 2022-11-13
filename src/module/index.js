@@ -1,8 +1,8 @@
 /**
  * UI 
  */
-import { ACTION_TYPE, state } from '@src/module/store';
-import { eventOn, eventOff } from '@src/module/event';
+import { eventOn, eventOff } from '@src/util/event';
+import { ACTION_TYPE, state } from '@src/store/index';
 import { selectorLoading, selectorMessage, selectorSlider } from '@src/module/element';
 
 // 엘리먼트
@@ -10,7 +10,9 @@ const $loading = selectorLoading();
 const $message = selectorMessage();
 const { $slide, $slideWrap, $buttonPrev, $buttonNext } = selectorSlider();
 
-// 로딩 데이터 업데이트되었을 때
+/**
+ * 로딩 데이터 업데이트되었을 때
+ */
 export const setRenderLoading = ($loading, $slide, is = false) => {
     if(is) {
         $loading.style.display = 'block';
@@ -28,7 +30,9 @@ eventOn(ACTION_TYPE.SET_LOADING, ({ detail }) => {
     setRenderLoading($loading, $slide, detail);
 });
 
-// 이미지 데이터 업데이트되었을 때
+/**
+ * 이미지 데이터 업데이트되었을 때
+ */
 export const setRenderSlideList = ($slideWrap = null, data = []) => {
     $slideWrap.innerHTML = ''; 
     const $fragment = document.createDocumentFragment(); // 임시 Node DOM 공간 활용
@@ -49,7 +53,9 @@ eventOn(ACTION_TYPE.SET_DATA_IMAGES, ({ detail }) => {
     setRenderSlideList($slideWrap, detail);
 });
 
-// 슬라이드 index 번경되었을 때
+/**
+ * 슬라이드 index 번경되었을 때
+ */
 export const setRenderSlideMove = ($slide = null, data = 0) => {
     const $slideItems = $slide.querySelectorAll(".slide_item");
     const slideWidth = $slide.clientWidth;
@@ -66,7 +72,9 @@ eventOn(ACTION_TYPE.SET_DATA_INDEX, ({ detail }) => {
     setRenderSlideMove($slide, detail);
 });
 
-// 이전 / 다음 슬라이드
+/**
+ * 이전 / 다음 슬라이드
+ */
 const setSlideButtonListener = (event) => {
     const type = event?.target?.dataset?.type; // data-type 속성값
     // 상태변경
@@ -85,7 +93,9 @@ try {
     console.log(error);
 }
 
-// 플리킹
+/**
+ * 플리킹
+ */
 (() => {
     let pointStart = 0;
     let pointEnd = 0;

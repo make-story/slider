@@ -1,6 +1,6 @@
 import '@src/index.css';
 import { fetchImageList } from '@src/api/index';
-import { ACTION_TYPE, state } from '@src/module/store';
+import { ACTION_TYPE, state } from '@src/store/index';
 import { selectorMessage, selectorSlider } from '@src/module/element';
 import '@src/module/index';
 
