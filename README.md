@@ -1,4 +1,4 @@
-# 과제 셋업
+# 환경 셋업
 
 - Node.js 웹서버
 - Express 웹프레임워크
@@ -6,7 +6,7 @@
 - webpack, babel 빌드
 - image-thumbnail NPM 이미지 썸네일 도구
 
-# 과제 실행
+# 환경 실행
 
 빌드
 
