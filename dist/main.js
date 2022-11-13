@@ -16,7 +16,7 @@
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"fetchImageList\": () => (/* binding */ fetchImageList)\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/**\n * 이미지 슬라이드 API\n */\n\nvar fetchImageList = () => {\n  return axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].get('//localhost:5000/api/images').then(response => response.data);\n};\n\n//# sourceURL=webpack://slider.git/./src/api/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"fetchImageList\": () => (/* binding */ fetchImageList)\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/**\n * 이미지 슬라이드 API\n */\n\nvar fetchImageList = () => {\n  //return axios.get('//localhost:5000/api/images').then(response => response.data);\n  return fetch('//localhost:5000/api/images').then(response => response.json());\n};\n\n//# sourceURL=webpack://slider.git/./src/api/index.js?");
 
 /***/ }),
 
