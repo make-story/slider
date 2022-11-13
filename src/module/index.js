@@ -1,17 +1,14 @@
 /**
- * UI 모듈
+ * UI 
  */
-import { fetchImageList } from '../api/index';
-import { ACTION_TYPE, state } from './store';
-import { eventOn, eventOff } from './event';
+import { ACTION_TYPE, state } from '@src/module/store';
+import { eventOn, eventOff } from '@src/module/event';
+import { selectorLoading, selectorMessage, selectorSlider } from '@src/module/element';
 
-// 엘리먼트 셀렉트
-const $loading = document.querySelector("#loading");
-const $message = document.querySelector("#message");
-const $slide = document.querySelector("#slide");
-const $slideWrap = ($slide || document).querySelector(".slide_wrap");
-const $buttonPrev = ($slide || document).querySelector(".slide_prev_button");
-const $buttonNext = ($slide || document).querySelector(".slide_next_button");
+// 엘리먼트
+const $loading = selectorLoading();
+const $message = selectorMessage();
+const { $slide, $slideWrap, $buttonPrev, $buttonNext } = selectorSlider();
 
 // 로딩 데이터 업데이트되었을 때
 export const setRenderLoading = ($loading, $slide, is = false) => {
@@ -24,6 +21,7 @@ export const setRenderLoading = ($loading, $slide, is = false) => {
     }
 };
 eventOn(ACTION_TYPE.SET_LOADING, ({ detail }) => {
+    // 유효성 검사
     if(!$loading || !$slide) {
         return;
     }
@@ -44,6 +42,7 @@ export const setRenderSlideList = ($slideWrap = null, data = []) => {
     $slideWrap.appendChild($fragment);
 };
 eventOn(ACTION_TYPE.SET_DATA_IMAGES, ({ detail }) => {
+    // 유효성 검사
     if(!$slideWrap || !Array.isArray(detail)) {
         return;
     }
@@ -60,29 +59,12 @@ export const setRenderSlideMove = ($slide = null, data = 0) => {
     });
 };
 eventOn(ACTION_TYPE.SET_DATA_INDEX, ({ detail }) => {
+    // 유효성 검사
     if(!$slide) {
         return;
     }
     setRenderSlideMove($slide, detail);
 });
-
-// 이미지 데이터 로드
-(async () => {
-    state(ACTION_TYPE.SET_LOADING, true);
-    // 데이터 호출
-    try {
-        const response = await fetchImageList();
-        const { images = [] } = response || {};
-        state(ACTION_TYPE.SET_DATA_IMAGES, images);
-        state(ACTION_TYPE.SET_LOADING, false);
-    }catch (error) {
-        console.log(error);
-        state(ACTION_TYPE.SET_DATA_IMAGES, []);
-        state(ACTION_TYPE.SET_LOADING, false);
-        $slide.style.display = 'none';
-        $message.innerHTML = '데이터 로드에 실패했습니다. 자주 발생할 경우 고객센터 문의 부탁드립니다.';
-    }
-})();
 
 // 이전 / 다음 슬라이드
 const setSlideButtonListener = (event) => {
