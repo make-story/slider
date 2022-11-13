@@ -7,6 +7,7 @@ import { eventOn, eventOff } from './event';
 
 // 엘리먼트 셀렉트
 const $loading = document.querySelector("#loading");
+const $message = document.querySelector("#message");
 const $slide = document.querySelector("#slide");
 const $slideWrap = ($slide || document).querySelector(".slide_wrap");
 const $buttonPrev = ($slide || document).querySelector(".slide_prev_button");
@@ -79,6 +80,7 @@ eventOn(ACTION_TYPE.SET_DATA_INDEX, ({ detail }) => {
         state(ACTION_TYPE.SET_DATA_IMAGES, []);
         state(ACTION_TYPE.SET_LOADING, false);
         $slide.style.display = 'none';
+        $message.innerHTML = '데이터 로드에 실패했습니다. 자주 발생할 경우 고객센터 문의 부탁드립니다.';
     }
 })();
 
