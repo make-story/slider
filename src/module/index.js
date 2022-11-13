@@ -3,11 +3,12 @@
  */
 import { eventOn, eventOff } from '@src/util/event';
 import { ACTION_TYPE, state } from '@src/store/index';
-import { selectorLoading, selectorMessage, selectorSlider } from '@src/module/element';
+import { selectorLoading, selectorMessage, selectorOriginalImage, selectorSlider } from '@src/module/element';
 
 // 엘리먼트
 const $loading = selectorLoading();
 const $message = selectorMessage();
+const $originalImage = selectorOriginalImage();
 const { $slide, $slideWrap, $buttonPrev, $buttonNext } = selectorSlider();
 
 /**
@@ -64,12 +65,27 @@ export const setRenderSlideMove = ($slide = null, data = 0) => {
         value.setAttribute("style", `left: ${-offset}px`);
     });
 };
+export const setRenderOriginalImage = ($originalImage, data = null) => {
+    const images = state(ACTION_TYPE.GET_DATA_IMAGES);
+    $originalImage.innerHTML = '';
+    if(!isNaN(Number(data)) && Array.isArray(images) && images[data]) {
+        const $img = document.createElement('img');
+        $img.onload = () => {
+            $img.setAttribute('data-load', 'true');
+        };
+        $img.src = `//localhost:5000${images[data]}`;
+        $originalImage.appendChild($img);
+    }else {
+        $originalImage.innerHTML = '오류가 발생했습니다.'
+    }
+};
 eventOn(ACTION_TYPE.SET_DATA_INDEX, ({ detail }) => {
     // 유효성 검사
     if(!$slide) {
         return;
     }
     setRenderSlideMove($slide, detail);
+    setRenderOriginalImage($originalImage, detail);
 });
 
 /**

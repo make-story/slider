@@ -24,4 +24,5 @@ const { $slide, $slideWrap, $buttonPrev, $buttonNext } = selectorSlider();
         $slide.style.display = 'none';
         $message.innerHTML = '데이터 로드에 실패했습니다. 자주 발생할 경우 고객센터 문의 부탁드립니다.';
     }
+    state(ACTION_TYPE.SET_DATA_INDEX, 0);
 })();

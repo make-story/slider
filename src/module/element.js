@@ -5,6 +5,7 @@
  */
 export const selectorLoading = () => document.querySelector("#loading");
 export const selectorMessage = () => document.querySelector("#message");
+export const selectorOriginalImage = () => document.querySelector("#originalImage");
 export const selectorSlider = () => {
     const $slide = document.querySelector("#slide");
     const $slideWrap = ($slide || document).querySelector(".slide_wrap");
